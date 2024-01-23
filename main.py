@@ -1,9 +1,7 @@
-import time
-
-from time import sleep
 import requests
 from urllib.parse import urlencode
 from math import ceil
+import random
 
 CONST_HEADERS = {
         'Accept': '*/*',
@@ -42,12 +40,12 @@ def get_all_articles_by_keyword(keyword, count_of_positions, const_headers=CONST
             **const_headers,
             'Referer': f'https://www.wildberries.ru/catalog/0/search.aspx?page={page}&sort=popular&{urlencode({"search": keyword})}',
         }
-        response = requests.get(url=url, headers=headers)
+        proxies = {'http': 'http://10539581-all-country-RU:1gmng5r8ra@190.2.151.110:14770'}
+        response = requests.get(url=url, headers=headers, proxies=proxies)
         response.raise_for_status()
         positions_by_page = response.json()['data']['products']
         articles_by_page = [position['id'] for position in positions_by_page]
         all_article_numbers.extend(articles_by_page)
-        sleep(7)
 
     return all_article_numbers
 
@@ -63,13 +61,10 @@ def find_position_in_search(all_articles, target_article):
 def main():
     target_article = input('Введите артикул: ')
     keyword = input('Введите ключевую фразу: ')
-    start_time = time.time()
     count_of_positions = get_count_positions(keyword)
     all_article_numbers = get_all_articles_by_keyword(keyword, count_of_positions)
     position = find_position_in_search(all_article_numbers, target_article)
     print(position)
-    end_time = time.time()
-    print(end_time-start_time)
 
 
 if __name__=='__main__':
