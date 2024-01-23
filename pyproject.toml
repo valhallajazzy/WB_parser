@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "wb-serch-position"
+version = "0.1.0"
+description = ""
+authors = ["vale"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+asyncio = "^3.4.3"
+aiohttp = "^3.9.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
