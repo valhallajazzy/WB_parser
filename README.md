@@ -2,7 +2,7 @@
 Поиск осуществляется по артикулу товарa. WARNING! если по ключевому слову в поиске находится более 3000 позиций, 
 то скрипт отключается, так как у сайта есть количество лимитов подключения.
 
-![Screenshot]()
+![Screenshot](https://github.com/valhallajazzy/WB_parser/blob/main/picture_for_readme/picture.png)
 
 ## Подготовка и запуск скрипта
 
