@@ -40,8 +40,7 @@ def get_all_articles_by_keyword(keyword, count_of_positions, const_headers=CONST
             **const_headers,
             'Referer': f'https://www.wildberries.ru/catalog/0/search.aspx?page={page}&sort=popular&{urlencode({"search": keyword})}',
         }
-        proxies = {'http': 'http://10539581-all-country-RU:1gmng5r8ra@190.2.151.110:14770'}
-        response = requests.get(url=url, headers=headers, proxies=proxies)
+        response = requests.get(url=url, headers=headers)
         response.raise_for_status()
         positions_by_page = response.json()['data']['products']
         articles_by_page = [position['id'] for position in positions_by_page]
